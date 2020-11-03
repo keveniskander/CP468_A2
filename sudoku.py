@@ -10,6 +10,9 @@ __updated__ = "2020-11-02"
 -------------------------------------------------------
 """
 
+# Some Sudoku puzzle examples taken from here:
+# https://dingo.sbs.arizona.edu/~sandiway/sudoku/examples.html
+
 class Sudoku:
 
     def __init__(self):
