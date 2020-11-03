@@ -13,7 +13,7 @@ __updated__ = "2020-11-02"
 class Sudoku:
 
     def __init__(self):
-        f = open('puzzle1.txt', 'r')
+        f = open('sudoku1.txt', 'r')
         lines = f.readlines()
         if len(lines)!=9:
             print('ERROR: Invalid puzzle file')
