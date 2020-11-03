@@ -15,6 +15,11 @@ class Sudoku:
     def __init__(self):
         self.table = [[1 for i in range(9)] for j in range(9)]
 
+    def __eq__(self, sudoku2):
+        if self.table == sudoku2.table:
+            return True
+        return False
+
 
     # Code taken from https://stackoverflow.com/questions/37952851/formating-sudoku-grids-python-3
     def print_table(self):
