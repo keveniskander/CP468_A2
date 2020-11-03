@@ -13,7 +13,18 @@ __updated__ = "2020-11-02"
 class Sudoku:
 
     def __init__(self):
-        self.table = [[1 for i in range(9)] for j in range(9)]
+        f = open('puzzle1.txt', 'r')
+        lines = f.readlines()
+        if len(lines)!=9:
+            print('ERROR: Invalid puzzle file')
+            self.table = [[0 for i in range(9)] for j in range(9)]
+        else:
+            self.table = [[0 for i in range(9)] for j in range(9)]
+            for i in range(len(lines)):
+                for j in range(len(self.table)):
+                    self.table[i][j] = lines[i][j]
+
+        f.close()
 
     def __eq__(self, sudoku2):
         if self.table == sudoku2.table:
