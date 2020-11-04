@@ -25,7 +25,7 @@ class Sudoku:
             self.table = [[0 for i in range(9)] for j in range(9)]
             for i in range(len(lines)):
                 for j in range(len(self.table)):
-                    self.table[i][j] = lines[i][j]
+                    self.table[i][j] = int(lines[i][j])
 
         f.close()
 
@@ -48,10 +48,42 @@ class Sudoku:
             else:
                 print("|" + "   +"*8 + "   |")
 
+    # https://www.educative.io/edpresso/how-to-check-if-a-sudoku-board-is-valid
+
+    def is_valid_row(self, i):
+        
+        temp =  self.table[i]
+        temp = list(filter(lambda a: a != 0, temp))
+
+        if len(temp) == len(list(set(temp))):
+            return True
+        else:
+            return False
+
+    def is_valid_col(self, j):
+
+        temp = [row[j] for row in self.table]
+        temp = list(filter(lambda a: a != 0, temp))
+
+        if len(temp) == len(list(set(temp))):
+            return True
+        else:
+            return False
+
+    def is_valid(self):
+        # seen = set()
+        for i in range(len(self.table)):
+            if self.is_valid_row(i) == False or self.is_valid_col(i) == False:
+                print('test3')
+                return False
+
+        return True
+
 
 def main():
     sud = Sudoku()
     sud.print_table()
+    print(sud.is_valid())
 
 if __name__ == "__main__":
     main()
