@@ -48,33 +48,93 @@ class Sudoku:
             else:
                 print("|" + "   +"*8 + "   |")
 
-    # https://www.educative.io/edpresso/how-to-check-if-a-sudoku-board-is-valid
 
-    def is_valid_row(self, i):
-        
-        temp =  self.table[i]
-        temp = list(filter(lambda a: a != 0, temp))
+    def valid_col(self, col):
+        """
+        -------------------------------------------------------
+        Returns if a column is valid.
+        Parameters: self - Matrix
+                    col - column index
+        Return: Boolean - True if no repeat numbers (1-9) exist
+                          in the column
+        -------------------------------------------------------
+        """
+        visited = []
+        result = True
+        for i in range(9):
+            if (not self.table[i][col] in visited):
+                if (self.table[i][col] != 0):
+                    visited.append(self.table[i][col])
+            else:
+                return result == False
+        return result
+            
+    def valid_row(self, row):
+        """
+        -------------------------------------------------------
+        Returns if a row is valid.
+        Parameters: self - Matrix
+                    row - row index
+        Return: Boolean - True is no repeat numbers (1-9) exist
+                          in the row
+        -------------------------------------------------------
+        """
+        visited = []
+        result = True
+        for i in range(9):
+            if (not self.table[row][i] in visited):
+                if (self.table[row][i] != 0):
+                    visited.append(self.table[row][i])
+            else:
+                return result == False
+        return result
 
-        if len(temp) == len(list(set(temp))):
-            return True
-        else:
-            return False
+    def valid_subsquare(self, row, col):
+        """
+        -------------------------------------------------------
+        Returns if a subsquare is valid.
+        Parameters: self - Matrix
+                    col - column index
+                    row - row index
+        Return: Boolean - True is no repeat numbers (1-9) exist
+                          in the subsquare
+        -------------------------------------------------------
+        """
+        visited = []
+        result = True
+        r_index = row
+        c_index = col
 
-    def is_valid_col(self, j):
+        #Find top left index of subsquare
+        r = False
+        c = False
+        while r == False or c == False:
+            if(r == False):
+                if(r_index%3 == 0):
+                    r = True
+                else:
+                    r_index -= 1
 
-        temp = [row[j] for row in self.table]
-        temp = list(filter(lambda a: a != 0, temp))
+            if(c == False):
+                if(c_index%3 == 0):
+                    c = True
+                else:
+                    c_index -= 1
 
-        if len(temp) == len(list(set(temp))):
-            return True
-        else:
-            return False
+        for row in range(r_index, r_index+3):
+            for col in range(c_index, c_index+3):
+                if(not self.table[row][col] in visited):
+                    if (self.table[row][col] != 0):
+                        visited.append(self.table[row][col])
+                else:
+                    return result == False
+        return result
 
     def is_valid(self):
         # seen = set()
         for i in range(len(self.table)):
-            if self.is_valid_row(i) == False or self.is_valid_col(i) == False:
-                print('test3')
+            if self.valid_row(i) == False or self.valid_col(i) == False:
+                # print('test3')
                 return False
 
         return True
