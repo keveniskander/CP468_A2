@@ -152,8 +152,8 @@ Version 1.0
 
 ## Authors
 
-**Keven Iskander** 
-**Carla Castaneda** 
-**Alexander Francis** 
+**Keven Iskander,** 
+**Carla Castaneda,** 
+**Alexander Francis,** 
 **Nicole Laslavic** 
 
